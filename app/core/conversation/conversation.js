@@ -3,38 +3,34 @@ angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry'])
 .component('conversation', {
     templateUrl: 'core/conversation/conversation.html',
     bindings: {
-        'key': '=',
-        'removeConversation': '&'
+        'model': '=',
+        'removeConversation': '&onRemove'
     },
     controller: ConversationCtrl
 });
 
 function Message() {
-    text = "text";
-    id = "id";
+    this.text = "";
+    this.id = "";
 }
 
-function ConversationCtrl(conversations) {
+function ConversationCtrl() {
     this.$onInit = function() {
-        this.conversation = conversations.get(this.key);
-        console.log(this.conversation);
+        this.model = this.model || new Conversation();
         this.character = {};
         this.character.name = this.key;
     }
     this.addMessage = function() {
-        this.conversation.items.push(new Message())
+        this.model.items.push(new Message())
     }
     this.addInquiry = function() {
         console.log("adding inquiry");
     }
     this.removeMessage = function(message) {
-        var i = this.conversation.items.indexOf(message);
+        var i = this.model.items.indexOf(message);
         if (i >= 0) {
-            this.conversation.items.splice(i, 1);
+            this.model.items.splice(i, 1);
         }
-    }
-    this.removeConversation = function() {
-        conversations.remove(this.key);
     }
 }
 

@@ -8,7 +8,7 @@
         </button>
     </div>
     <div class="messages">
-        <message ng-repeat="message in $ctrl.conversation.items" model="message"
+        <message ng-repeat="message in $ctrl.model.items" model="message"
                  on-delete="$ctrl.removeMessage(message)">
         </message>
     </div>
