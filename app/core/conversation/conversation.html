@@ -1,19 +1,19 @@
 <div class="conversation">
     <div class="conversation-header">
         <button title="change image" class="conversation-image"></button>
-        <input class="conversation-name" ng-model="$ctrl.model.name"/>
+        <input class="conversation-name" ng-model="$ctrl.key"/>
         <button title="remove this conversation" class="delete-button btn btn-xl btn-danger"
                 ng-click="$ctrl.removeConversation()">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>
     <div class="messages">
-        <message ng-repeat="message in $ctrl.model.messages" model="message"
+        <message ng-repeat="message in $ctrl.conversation.items" model="message"
                  on-delete="$ctrl.removeMessage(message)">
         </message>
     </div>
 
-    <inquiry></inquiry>
+    <!--<inquiry></inquiry>-->
 
     <div class="conversation-buttons">
         <button class="add-conversation-button" ng-click="$ctrl.addMessage()">add message</button>

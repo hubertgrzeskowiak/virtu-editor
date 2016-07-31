@@ -1,8 +1,6 @@
 <div ng-controller="EditController as $ctrl">
     <div class="conversations">
-        <conversation ng-repeat="conversation in $ctrl.model.conversations"
-                      model="conversation"
-                      remove-conversation="$ctrl.askRemoveConversation(conversation)">
+        <conversation ng-repeat="conversation in $ctrl.conversations" key="conversation.character_id">
         </conversation>
         <div class="add-conversation">
             <div class="conversation-header">
@@ -14,7 +12,4 @@
         </div>
     </div>
 
-
-    <h4>model debug</h4>
-    <pre class="debug">{{ model | json }}</pre>
 </div>
