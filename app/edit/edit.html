@@ -1,0 +1,20 @@
+<div ng-controller="EditController as $ctrl">
+    <div class="conversations">
+        <conversation ng-repeat="conversation in $ctrl.model.conversations"
+                      model="conversation"
+                      remove-conversation="$ctrl.askRemoveConversation(conversation)">
+        </conversation>
+        <div class="add-conversation">
+            <div class="conversation-header">
+                <button ng-click="$ctrl.addConversation()" class="conversation-image">
+                    <span class="glyphicons glyphicon-plus"></span>
+                </button>
+                <p class="conversation-name">add</p>
+            </div>
+        </div>
+    </div>
+
+
+    <h4>model debug</h4>
+    <pre class="debug">{{ model | json }}</pre>
+</div>

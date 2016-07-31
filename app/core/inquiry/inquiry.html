@@ -1,0 +1,32 @@
+<div class="inquiry message outgoing" ng-class="{'focused': $ctrl.isFocused}">
+    <div class="choice">
+        <input class="choice-text" type="text" value="Yes."
+               ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"/><br>
+        <div class="choice-result message-id not-empty">
+            <i class="message-id-icon fa fa-location-arrow" aria-hidden="true">
+            </i><input class="choice-result-text message-id-text" type="text" value="said-yes"
+                       ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"/>
+        </div>
+
+        <button title="go to target" class="goto-button btn btn-md btn-default">
+            <span class="goto-icon fa fa-crosshairs" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="choice">
+        <input class="choice-text" type="text" value="No."
+               ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"/>
+        <div class="choice-result message-id not-empty">
+            <i class="message-id-icon fa fa-location-arrow" aria-hidden="true">
+            </i><input class="choice-result-text message-id-text" type="text" value="said-no"
+                       ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"/>
+        </div>
+        <button title="go to target" class="goto-button btn btn-md btn-default">
+            <span class="goto-icon fa fa-crosshairs" aria-hidden="true"></span>
+        </button>
+    </div>
+    <button title="delete this message"
+            class="delete-button btn btn-md btn-danger">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+</div>
+<hr/>

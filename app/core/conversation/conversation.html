@@ -1,0 +1,25 @@
+<div class="conversation">
+    <div class="conversation-header">
+        <button title="change image" class="conversation-image"></button>
+        <input class="conversation-name" ng-model="$ctrl.model.name"/>
+        <button title="remove this conversation" class="delete-button btn btn-xl btn-danger"
+                ng-click="$ctrl.removeConversation()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <div class="messages">
+        <message ng-repeat="message in $ctrl.model.messages" model="message"
+                 on-delete="$ctrl.removeMessage(message)">
+        </message>
+    </div>
+
+    <inquiry></inquiry>
+
+    <div class="conversation-buttons">
+        <button class="add-conversation-button" ng-click="$ctrl.addMessage()">add message</button>
+        <button class="add-inquiry-button" ng-click="$ctrl.addInquiry()">add inquiry</button>
+        <button class="add-forwarding-button">add forwarding</button>
+    </div>
+</div>
+
+

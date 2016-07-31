@@ -1,0 +1,264 @@
+@page-bg-color: #eeeeee;
+@message-bg-color: white;
+@message-outgoing-bg-color: #DCF8C6;
+@message-incoming-bg-color: white;
+@message-focused-outgoing-bg-color: #e9fff2;
+@message-focused-incoming-bg-color: #f4ffff;
+@conversation-element-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+@conversation-element-padding: 0.2em 1em 1em;
+@conversation-element-margin: 1em;
+
+body {
+  background: @page-bg-color;
+}
+
+.menu {
+  list-style: none;
+  & > li {
+    display: inline;
+  }
+}
+
+#versioninfo {
+  position: absolute;
+  bottom: 0;
+}
+
+.conversations {
+  overflow-x: scroll;
+  width: 100%;
+  white-space: nowrap;
+  padding-top: 10px;
+  .conversation, .add-conversation {
+    width: 300px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .conversation > hr {
+    border-top-color: rgba(0,0,0,0.2);
+  }
+}
+
+.conversation-header {
+  position: relative;
+  padding: 1em 1em 0;
+  .conversation-image {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: auto;
+    padding: 0;
+    border-radius: 50%;
+    background: @page-bg-color url('resources/img/blonde_smile.png') center center/cover no-repeat;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s, transform 0.2s;
+    &:hover, &:focus {
+      transform: scale(1.1, 1.1);
+      box-shadow: 0 2px 25px rgba(0, 0, 0, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+  }
+  .conversation-name {
+    border: 0;
+    background: transparent;
+    width: 100%;
+    font-weight: bold;
+    font-size: 200%;
+    text-align: center;
+    &:focus {
+      color: grey;
+    }
+  }
+  .delete-button {
+    position: absolute;
+    top: 0;
+    right: 1em;
+    transition: opacity 0.2s;
+    opacity: 0;
+  }
+  &:hover .delete-button, .delete-button:focus {
+    opacity: 1;
+  }
+}
+
+.add-conversation {
+  .conversation-image {
+    font-size: 70px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    span {
+      line-height: 100px;
+      color: @page-bg-color;
+    }
+  }
+}
+
+.message {
+  box-shadow: @conversation-element-shadow;
+  padding: @conversation-element-padding;
+  background: @message-bg-color;
+  transition: background 0.2s;
+  margin: @conversation-element-margin;
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    height: 20px;
+    width: 20px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    width: 14px;
+    height: 14px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent;
+    transition: border-color 0.2s;
+  }
+  &.incoming {
+    border-radius: 0 10px 10px 10px;
+    background: @message-incoming-bg-color;
+    &::before {
+      transform: skew(45deg);
+      left: -10px;
+      background: @message-incoming-bg-color;
+      border-radius: 8px 0;
+      box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.2);
+    }
+    &::after {
+      left: -10px;
+      transform-origin: 0 0;
+      transform: rotate(-45deg);
+      border-color: @message-incoming-bg-color;
+    }
+    &.focused {
+      background: @message-focused-incoming-bg-color;
+      &::before {
+        background: @message-focused-incoming-bg-color;
+      }
+      &::after {
+        border-color: @message-focused-incoming-bg-color;
+      }
+    }
+  }
+  &.outgoing {
+    border-radius: 10px 0 10px 10px;
+    background: @message-outgoing-bg-color;
+    &::before {
+      transform: skew(-45deg);
+      right: -10px;
+      background: @message-outgoing-bg-color;
+      border-radius: 0 8px;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    }
+    &::after {
+      right: -10px;
+      transform-origin: 100% 0;
+      transform: rotate(45deg);
+      border-color: @message-outgoing-bg-color;
+    }
+    &.focused {
+      background: @message-focused-outgoing-bg-color;
+      &::before {
+        background: @message-focused-outgoing-bg-color;
+      }
+      &::after {
+        border-color: @message-focused-outgoing-bg-color;
+      }
+    }
+  }
+  & > * {
+    padding-right: 2em;
+  }
+  button {
+    opacity: 1;
+    transition: opacity 0.2s;
+    position: absolute;
+    right: 1em;
+    // override the star setting from above
+    padding: 1px 5px;
+    &.delete-button {
+      top: 0.4em;
+    }
+    &.switch-button {
+      top: 2.4em;
+    }
+    &.goto-button {
+      top: 1.8em;
+      right: 0;
+    }
+    .fa {
+      width: 1em;
+    }
+  }
+  &:hover button, button:focus {
+    opacity: 1;
+  }
+  textarea, input {
+    background: transparent;
+    border: none;
+    width: 100%;
+  }
+  .message-id {
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+    // Do not stack those. this won't work since an unknown selector group is treated as
+    // invalid by browsers.
+    :-moz-placeholder {
+      font-weight: normal;
+    }
+    ::-moz-placeholder {
+      font-weight: normal;
+    }
+    ::-webkit-input-placeholder {
+      font-weight: normal;
+    }
+    :-ms-input-placeholder {
+      font-weight: normal;
+    }
+    &.not-empty {
+      opacity: 0.6;
+    }
+    .message-id-icon {
+      display: inline-block;
+      width: 0;
+      overflow: visible;
+    }
+    .message-id-text {
+      padding-left: 16px;
+    }
+  }
+  &:hover .message-id, &.focused .message-id {
+    opacity: 1;
+  }
+}
+
+.inquiry {
+  .choice {
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .choice + .choice {
+    border-top: 1px solid rgba(0,0,0,0.2);
+  }
+  .choice:last-child {
+    padding-bottom: 0;
+  }
+}
+
+
+.debug {
+  background: #ffffaa;
+  white-space: pre-wrap;
+}

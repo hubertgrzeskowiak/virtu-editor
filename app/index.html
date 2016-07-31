@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Virtú Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">
+</head>
+<body>
+
+<!--[if lt IE 9]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<ul class="menu">
+    <li><a href="#!/edit">edit</a></li>
+    <li><a href="#!/test">test</a></li>
+</ul>
+<hr/>
+
+
+<div ng-view></div>
+<import></import>
+
+<!--<div id="versioninfo">Virtù Editor v<span app-version></span></div>-->
+
+<script>
+    function defaultValue(current, defaultVal) {
+        return typeof current !== "undefined" ? current : defaultVal;
+    }
+</script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<!--<script src="bower_components/angular-animate/angular-animate.min.js"></script>-->
+<script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+<script src="bower_components/ng-sweet-alert-promised/dist/ng-sweet-alert.min.js"></script>
+
+<script src="app.js"></script>
+<script src="util/util.js"></script>
+
+<script src="edit/edit.js"></script>
+<script src="testrun/testrun.js"></script>
+<script src="core/conversation/conversation.js"></script>
+<script src="core/inquiry/inquiry.js"></script>
+<script src="core/message/message.js"></script>
+<script src="core/version/version.js"></script>
+
+<script src="bower_components/x2js/xml2json.js"></script>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
