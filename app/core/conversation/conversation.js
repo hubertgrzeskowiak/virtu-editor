@@ -9,19 +9,25 @@ angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry'])
     controller: ConversationCtrl
 });
 
-function Message() {
-    this.text = "";
-    this.id = "";
+function Conversation(includeRandomMessage) {
+    this.key = "";
+    this.items = [];
+    if (includeRandomMessage) {
+        this.items.push(new RandomMessage());
+    }
 }
 
 function ConversationCtrl() {
     this.$onInit = function() {
-        this.model = this.model || new Conversation();
+        this.model = this.model || new Conversation(true);
         this.character = {};
-        this.character.name = this.key;
+        this.character.name = this.model.key;
     }
-    this.addMessage = function() {
-        this.model.items.push(new Message())
+    this.addMessage = function(text, id) {
+        var m = new Message();
+        m.text = defaultValue(text, m.text);
+        m.id = defaultValue(id, m.id);
+        this.model.items.push(m)
     }
     this.addInquiry = function() {
         console.log("adding inquiry");

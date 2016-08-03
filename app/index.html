@@ -30,8 +30,8 @@
 <!--<div id="versioninfo">Virtù Editor v<span app-version></span></div>-->
 
 <script>
-    function defaultValue(current, defaultVal) {
-        return typeof current !== "undefined" ? current : defaultVal;
+    function defaultValue(candidate, defaultVal) {
+        return typeof candidate !== "undefined" ? candidate : defaultVal;
     }
 </script>
 <script src="bower_components/angular/angular.js"></script>
@@ -46,6 +46,7 @@
 <script src="edit/edit.js"></script>
 <script src="testrun/testrun.js"></script>
 <script src="core/conversation/conversation.js"></script>
+<script src="core/conversation/conversationsservice.js"></script>
 <script src="core/inquiry/inquiry.js"></script>
 <script src="core/message/message.js"></script>
 <script src="core/version/version.js"></script>

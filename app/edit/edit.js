@@ -8,70 +8,40 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
 
     .controller('EditController', EditController)
 
-    .service('conversations', function () {
-        // Conversations should have a defined order, so using id as key is not suitable.
-        this.all = [];
-        this.get = function (id) {
-            for (var i = 0; i < this.all.length; i++) {
-                if (this.all[i].character_id === id) {
-                    return this.all[i];
+    .config(function (conversationsProvider) {
+        var startingConversations = [
+
+            {
+                key: "Jen", items: [
+                {
+                    type: "message",
+                    id: "start",
+                    text: "Hello and welcome"
+                },
+                {
+                    type: "message",
+                    text: "You can start editing this story by clicking any of these " +
+                    "speech bubbles."
                 }
-            }
-            return undefined;
-        }
-        this.exists = function (id) {
-            return typeof this.get(id) !== 'undefined';
-        }
-        this.add = function (id) {
-            var c = new Conversation();
-            if (typeof id !== 'string') {
-                throw new TypeError("conversation id must be string");
-                return;
-            }
-            // look up if the id is used already
-            if (!this.exists(id)) {
-                c.character_id = id;
-            } else {
-                // if it is, try again after appending a number
-                for (var i = 2; i < 100; i++) {
-                    if (!this.exists(id + i)) {
-                        c.character_id = id + i;
-                        break;
-                    }
+            ]
+            },
+            {
+                key: "Lola", items: [
+                {
+                    type: "message",
+                    text: "you can have multiple characters with an own dialogue for each"
+                },
+                {
+                    type: "message",
+                    text: "using the big plus sign to the right you can also add new " +
+                    "characters to your story!"
                 }
+            ]
             }
-            this.all.push(c)
-            return c;
-        }
-        this.remove = function (id) {
-            for (var i = 0; i < this.all.length; i++) {
-                if (this.all[i].character_id === id) {
-                    this.all.splice(i, 1);
-                    break;
-                }
-            }
-        }
+        ];
+        conversationsProvider.setInitialData(startingConversations);
     })
 
-
-var helloMessages = ["Hi there, I'm using Virtù!", "What a nice day for writing",
-    "Help! I am trapped in this computer!!!",
-    "Your trial time has expired.\nBwahaha - gotcha! :-D",
-    "ENTER: ...me. haha", "Hello, world!", "Time to give this story a spin!",
-    "I will spice this story up!", "Give me a nice plot, will ya?"];
-
-var randomHello = function () {
-    return helloMessages[Math.floor(Math.random() * helloMessages.length)];
-}
-
-function RandomMessage() {
-    this.text = randomHello();
-}
-
-function Conversation() {
-    this.character_id = "";
-    this.items = [new RandomMessage()];
-}
 
 function Character() {
     this.name = "";
@@ -81,33 +51,12 @@ function Character() {
 function EditController($rootScope, SweetAlert, conversations) {
     var $ctrl = this;
     this.$onInit = function () {
+        // TODO: name clash!!!
         this.conversations = conversations.all;
     }
-    this.startingConversations = [
-        {
-            name: "Jen", messages: [
-            {id: "start", text: "Hello and welcome"},
-            {
-                text: "You can start editing this story by clicking any of these " +
-                "speech bubbles."
-            }
-        ]
-        },
-        {
-            name: "Lola", messages: [
-            {text: "you can have multiple characters with an own dialogue for each"},
-            {
-                text: "using the big plus sign to the right you can also add new " +
-                "characters to your story"
-            }
-        ]
-        }
-    ];
+
     this.addConversation = function (character_id) {
-
-
-        // this.model.conversations.push({messages: [{text: randomHello()}]});
-        return conversations.add("anon");
+        return conversations.add("new character");
     }
     this.askRemoveConversation = function (conversation) {
         var cancelMessages = ["Gosh, no!", "Wait!", "Aaah misclick!", "Stay!", "Actually..."];
@@ -121,7 +70,10 @@ function EditController($rootScope, SweetAlert, conversations) {
 
         SweetAlert.swal({
             html: true,
-            title: "<div class='conversation-header'><div class='conversation-image'></div></div>Are you sure?",
+            title: "<div class='conversation-header'>" +
+            "<div class='conversation-image'></div>" +
+            "</div>" +
+            "Are you sure?",
             text: "Removing the whole conversation is permanent!",
             showCancelButton: true,
             cancelButtonText: randomCancel(),
@@ -134,10 +86,6 @@ function EditController($rootScope, SweetAlert, conversations) {
         })
     }
     this.removeConversation = function (conversation) {
-        var i = this.conversations.indexOf(conversation);
-        if (i >= 0) {
-            this.conversations.splice(i, 1);
-        }
+        conversations.remove(conversation.key);
     }
 }
-
