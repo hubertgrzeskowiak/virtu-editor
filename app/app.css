@@ -1,6 +1,14 @@
 body {
   background: #eeeeee;
 }
+input,
+textarea {
+  cursor: pointer;
+}
+input:focus,
+textarea:focus {
+  cursor: text;
+}
 .menu {
   list-style: none;
 }

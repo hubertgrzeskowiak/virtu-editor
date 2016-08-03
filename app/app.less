@@ -12,6 +12,13 @@ body {
   background: @page-bg-color;
 }
 
+input, textarea {
+  cursor: pointer;
+  &:focus {
+    cursor: text;
+  }
+}
+
 .menu {
   list-style: none;
   & > li {
