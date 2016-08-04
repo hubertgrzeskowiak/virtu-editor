@@ -1,3 +1,9 @@
+angular.module('myApp.export')
+
+.service('jsonTransformer', function() {
+    this.transformObject = transformObject;
+})
+
 /**
  * Converts a string to a regular expression. Useful when using RegExp as properties in an
  * object, since only strings are allowed as property names.
@@ -36,11 +42,13 @@ function str2regex(str) {
  * is a function, it's called with the current object's property name and value. It
  * should return a new name for the property. On key match the JSON property name is
  * changed to the mapping-value. The values all stay the same, except for nested objects
- * and arrays of objects: these are transformed too.
+ * and arrays of objects: these are transformed too. If value is null or undefined, the
+ * property is removed.
  *
  * Example mappings:
- *   "a" : "link"     renames a property "a" to property "link"
+ *   "a" : "link"     renames properties with name "a" to property "link"
  *   "/a/" : "aaa"    renames all properties containing an "a" to "aaa"
+ *   "foobar" : null  removes properties with name "foobar"
  *
  * @param modelObject
  * @param keyMapping
@@ -57,12 +65,13 @@ function transformObject(modelObject, keyMapping) {
         for (var prop in obj) {
             var key = prop;
             var value = obj[prop];
+            console.log(key, value);
             var deleteProp = false;
             for (var mapping in keyMapping) {
                 if ((mapping.charAt(0) == "/" && str2regex(mapping).test(key)) ||
                     (typeof mapping == "string" && key == mapping)) {
                     var newValue = keyMapping[mapping];
-                    if (newValue == undefined) {
+                    if (newValue == undefined || newValue == null) {
                         deleteProp = true;
                     } else if (typeof newValue == "function") {
                         key = newValue(key, value);

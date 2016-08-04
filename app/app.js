@@ -1,7 +1,8 @@
 angular.module('myApp', [
     'ngRoute',
     'myApp.edit',
-    'myApp.testrun'
+    'myApp.testrun',
+    'myApp.export'
 ])
 
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
