@@ -65,7 +65,6 @@ function transformObject(modelObject, keyMapping) {
         for (var prop in obj) {
             var key = prop;
             var value = obj[prop];
-            console.log(key, value);
             var deleteProp = false;
             for (var mapping in keyMapping) {
                 if ((mapping.charAt(0) == "/" && str2regex(mapping).test(key)) ||
