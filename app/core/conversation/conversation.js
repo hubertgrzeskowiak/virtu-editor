@@ -1,4 +1,4 @@
-angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry'])
+angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.character'])
 
 .component('conversation', {
     templateUrl: 'core/conversation/conversation.html',
@@ -6,7 +6,7 @@ angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry'])
         'model': '=',
         'removeConversation': '&onRemove'
     },
-    controller: ConversationCtrl
+    controller: ['characterFactory', ConversationCtrl]
 });
 
 function Conversation(includeRandomMessage) {
@@ -17,10 +17,10 @@ function Conversation(includeRandomMessage) {
     }
 }
 
-function ConversationCtrl() {
+function ConversationCtrl(characterFactory) {
     this.$onInit = function() {
         this.model = this.model || new Conversation(true);
-        this.character = {};
+        this.character = characterFactory.create();
         this.character.name = this.model.key;
     }
     this.addMessage = function(text, id) {
@@ -39,20 +39,3 @@ function ConversationCtrl() {
         }
     }
 }
-
-
-
-// this.printJSON = function() {
-//     console.log(angular.toJson(this, 2));
-// }
-// this.printXML = function() {
-//     // var cleanJSON = angular.fromJson(angular.toJson(this));
-//     var cleanJSON = prepareModelExport(this);
-//     var config = {
-//         keepOrder: true,
-//         orderContainerName: "keepOrder",
-//         arrayOrderItems: ["message", "inquiry"],
-//         useDoubleQuotes: true
-//     }
-//     console.log((new X2JS(config)).json2xml_str(cleanJSON));
-// }

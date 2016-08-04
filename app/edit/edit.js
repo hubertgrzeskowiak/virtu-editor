@@ -10,7 +10,6 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
 
     .config(function (conversationsProvider) {
         var startingConversations = [
-
             {
                 key: "Jen", items: [
                 {
@@ -42,11 +41,6 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
         conversationsProvider.setInitialData(startingConversations);
     })
 
-
-function Character() {
-    this.name = "";
-    this.id = "";
-}
 
 function EditController($rootScope, SweetAlert, conversations) {
     var $ctrl = this;
