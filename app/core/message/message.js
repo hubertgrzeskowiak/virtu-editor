@@ -30,7 +30,7 @@ function RandomMessage() {
 
 function MessageCtrl() {
     this.$onInit = function () {
-        this.model = defaultValue(this.model, {});
+        this.model = defaultValue(this.model, new Message());
         this.model.id = defaultValue(this.model.id, "");
         this.model.text = defaultValue(this.model.text, "");
         this.isFocused = false;

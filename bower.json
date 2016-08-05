@@ -14,6 +14,7 @@
     "fontawesome": "^4.6.3",
     "x2js": "https://github.com/anvog/x2js.git#Feature-keepOrder",
     "ng-sweet-alert-promised": "^1.1.3",
-    "angular-animate": "1.5.7"
+    "angular-animate": "1.5.7",
+    "vkbeautify": "https://raw.githubusercontent.com/vkiryukhin/vkBeautify/master/vkbeautify.js"
   }
 }

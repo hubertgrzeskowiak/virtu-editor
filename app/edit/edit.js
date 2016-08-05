@@ -38,6 +38,40 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
             ]
             }
         ];
+        
+        var startingConversations2 = [
+            {
+                key: "Jen", items: [
+                {
+                    message: {
+                        id: "start",
+                        text: "Hello and welcome"
+                    }
+                },
+                {
+                    message: {
+                        text: "You can start editing this story by clicking any of these " +
+                            "speech bubbles."
+                    }
+                }
+            ]
+            },
+            {
+                key: "Lola", items: [
+                {
+                    message: {
+                        text: "you can have multiple characters with an own dialogue for each"
+                    }
+                },
+                {
+                    message: {
+                        text: "using the big plus sign to the right you can also add new " +
+                            "characters to your story!"
+                    }
+                }
+            ]
+            }
+        ];
         conversationsProvider.setInitialData(startingConversations);
     })
 
