@@ -38,7 +38,7 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
             ]
             }
         ];
-        
+
         var startingConversations2 = [
             {
                 key: "Jen", items: [
