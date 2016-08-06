@@ -7,13 +7,11 @@
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>
-    <div class="messages">
-        <message ng-repeat="message in $ctrl.model.items" model="message"
-                 on-delete="$ctrl.removeMessage(message)">
+    <div class="conversation-items">
+        <message ng-repeat="item in $ctrl.model.items" model="item"
+                 on-delete="$ctrl.removeItem(item)">
         </message>
     </div>
-
-    <!--<inquiry></inquiry>-->
 
     <div class="conversation-buttons">
         <button class="add-conversation-button" ng-click="$ctrl.addMessage()">add message</button>

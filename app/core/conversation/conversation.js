@@ -30,19 +30,13 @@ function ConversationCtrl(characterFactory) {
         this.model.items.push(m);
     };
     this.addInquiry = function() {
-        var inquiry = new Inquiry();
-        var c1 = new Choice();
-        c1.result = "start";
-        c1.text = "choice one";
-        var c2 = new Choice();
-        c2.result = "start";
-        c2.text = "choice two";
-        inquiry.choices.push(c1);
-        inquiry.choices.push(c2);
+        var c1 = new Choice("start", "choice one");
+        var c2 = new Choice("start", "choice two");
+        var inquiry = new Inquiry([c1, c2]);
         this.model.items.push(inquiry);
     };
-    this.removeMessage = function(message) {
-        var i = this.model.items.indexOf(message);
+    this.removeItem = function(item) {
+        var i = this.model.items.indexOf(item);
         if (i >= 0) {
             this.model.items.splice(i, 1);
         }

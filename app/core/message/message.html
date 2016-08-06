@@ -1,7 +1,7 @@
 <div class="message" ng-class="{'focused': $ctrl.isFocused, 'outgoing': (!$ctrl.model.isIncoming),
 'incoming' : $ctrl.model.isIncoming}">
     <div class="message-id"
-         ng-class="($ctrl.id == '') ? 'empty' : 'not-empty'">
+         ng-class="($ctrl.model.id == '') ? 'empty' : 'not-empty'">
         <i class="message-id-icon fa fa-crosshairs" aria-hidden="true">
         </i><input type="text" class="message-id-text" placeholder="message id"
                ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"
