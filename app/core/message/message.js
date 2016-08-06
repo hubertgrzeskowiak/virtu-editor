@@ -9,9 +9,11 @@ angular.module('myApp.message', ['util.autoGrow'])
         }
     })
 
-function Message() {
-    this.text = "";
-    this.id = "";
+function Message(text, id, isIncoming) {
+    this.type = "message";
+    this.text = defaultValue(text, "");
+    this.id = defaultValue(id, "");
+    this.isIncoming = defaultValue(isIncoming, true);
 }
 
 function RandomMessage() {
@@ -24,8 +26,7 @@ function RandomMessage() {
     var randomHello = function () {
         return helloMessages[Math.floor(Math.random() * helloMessages.length)];
     }
-    this.text = randomHello();
-    this.id = "";
+    return new Message(randomHello());
 }
 
 function MessageCtrl() {
@@ -34,11 +35,9 @@ function MessageCtrl() {
         this.model.id = defaultValue(this.model.id, "");
         this.model.text = defaultValue(this.model.text, "");
         this.isFocused = false;
-        this.isIncoming = true;
-        this.isOutgoing = !this.isIncoming;
+        this.model.isIncoming = true;
         this.toggleSide = function () {
-            this.isIncoming = !this.isIncoming;
-            this.isOutgoing = !this.isIncoming;
+            this.model.isIncoming = !this.model.isIncoming;
         }
     }
 }
