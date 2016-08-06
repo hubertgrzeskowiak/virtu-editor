@@ -2,17 +2,21 @@ angular.module('myApp.inquiry', [])
 
     .component('inquiry', {
         templateUrl: 'core/inquiry/inquiry.html',
+        bindings: {
+            model: "="
+        },
         controller: InquiryController
     })
 
 function InquiryController() {
     this.$onInit = function() {
         this.isFocused = false;
+        this.model = defaultValue(this.model, new Inquiry())
     }
 }
 
-function Inquiry(target, choices) {
-    this.target = defaultValue(target, "");
+function Inquiry(choices) {
+    this.type = "inquiry";
     this.choices = defaultValue(choices, []);
 }
 
