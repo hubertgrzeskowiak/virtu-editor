@@ -6,7 +6,7 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
         });
     }])
 
-    .controller('EditController', EditController)
+    .controller('EditController', ['$rootScope', 'SweetAlert', 'conversations', EditController])
 
     .config(function (conversationsProvider) {
         var startingConversations = [
@@ -76,15 +76,16 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
     })
 
 
-function EditController($rootScope, SweetAlert, conversations) {
+function EditController($rootScope, SweetAlert, convService) {
     var $ctrl = this;
     this.$onInit = function () {
-        // TODO: name clash!!!
-        this.conversations = conversations.all;
+        this.conversations = convService.all;
     }
 
     this.addConversation = function (character_id) {
-        return conversations.add("new character");
+        var c = convService.add("new character");
+        c.items.push(new RandomMessage());
+        return c;
     }
     this.askRemoveConversation = function (conversation) {
         var cancelMessages = ["Gosh, no!", "Wait!", "Aaah misclick!", "Stay!", "Actually..."];
