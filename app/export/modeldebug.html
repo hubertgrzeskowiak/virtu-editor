@@ -1,0 +1,19 @@
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#json" showtab>JSON</a></li>
+        <li role="presentation"><a href="#ijson" showtab>Intermediate JSON</a></li>
+        <li role="presentation"><a href="#xml" showtab>XML</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="json">
+            <pre class="debug">{{ $ctrl.json | json }}</pre>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ijson">
+            <pre class="debug">{{ $ctrl.intermediate | json }}</pre>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="xml">
+            <pre class="debug">{{ $ctrl.xml }}</pre>
+        </div>
+    </div>
+</div>

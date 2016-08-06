@@ -1,24 +1,25 @@
 angular.module('myApp.export', ['myApp.conversation'])
 
-    .component('exportButton', {
-        template: '<button ng-click="$ctrl.print()">print model</button>' +
-        '<button ng-click="$ctrl.printJSON()">print JSON</button>',
-        controller: ['conversations', 'jsonTransformer', ExportController]
-    })
-
     .component('modelDebug', {
-        template: '' +
-        '<pre>{{ $ctrl.json | json }}</pre>' +
-        '<pre>{{ $ctrl.halfway | json }}</pre>' +
-        '<pre>{{ $ctrl.xml }}</pre>',
-        controller: ['conversations', 'jsonTransformer', ExportController]
+        templateUrl: 'export/modeldebug.html',
+        controller: ['conversations', 'jsonTransformer', '$scope', Exporter]
     })
 
-function ExportController(conversations, jsonTransformer) {
+function Exporter(conversations, jsonTransformer, $scope) {
+    var $ctrl = this;
     this.$onInit = function () {
         this.model = conversations.all;
-        this.json = {conversations: this.model}
-        this.transform();
+        this.json = {screenplay: this.model}
+        $scope.$watch(
+            function (scope) {
+                return $ctrl.model;
+            },
+            function () {
+                $ctrl.intermediate = $ctrl.prepareScreenplayForTransformation($ctrl.model);
+                $ctrl.xml = $ctrl.json2xml($ctrl.intermediate);
+            }, true)
+        // this.intermediate = this.prepareScreenplayForTransformation(this.model);
+        // this.xml = this.json2xml(this.intermediate);
     }
     this.print = function () {
         console.log(this.model)
@@ -28,39 +29,62 @@ function ExportController(conversations, jsonTransformer) {
         console.log(angular.toJson(this.model, 2));
     }
 
-    this.transform = function () {
-        var items = []
-        angular.forEach(this.model, function (conv, index, obj) {
-            angular.forEach(conv.items, function (value, key, obj) {
-                if (value.type === "message") {
-                    var msg = {
-                        message: {
-                            "__text": value.text,
-                            "_from": conv.key,
-                            "_id": value.id
-                        }
-                    }
-                    items.push(msg);
-                }
-            })
-        })
+    this.prepareMessageForTransformation = function (key, item) {
+        var msg = {
+            message: {
+                "__text": item.text
+            }
+        }
+        if (item.isIncoming) {
+            msg.message._from = key;
+            msg.message._to = "you";
+        } else {
+            msg.message._from = "you";
+            msg.message._to = key;
+        }
+        if (typeof item.id === 'string' && item.id.length > 0) {
+            msg.message._id = item.id;
+        }
+        return msg;
+    }
 
-        this.halfway = {screenplay: {keepOrder: items}};
-        this.halfway.screenplay.keepOrder.push({inquiry : {choice1: "choice 1 text", choice2: "choice 2 text"}});
-        // var mapping = {"/\\$/": null};
-        // var obj = {conversations: this.model};
-        // this.model = jsonTransformer.transformObject(obj, mapping);
-        this.xml = this.json2xml(this.halfway);
-        this.xml = vkbeautify.xml(this.xml, 4);
+    this.prepareConversationItemForTransformation = function (key, item) {
+        if (item.type === "message") {
+            return this.prepareMessageForTransformation(key, item);
+        } else {
+            console.log(item.type);
+        }
+    }
+
+    this.prepareConversationForTransformation = function (conv) {
+        var convItems = [];
+        angular.forEach(conv.items, function (value, key, obj) {
+            var item = $ctrl.prepareConversationItemForTransformation(conv.key, value);
+            if (item != null) {
+                convItems.push(item);
+            }
+        })
+        return convItems;
+    }
+
+    this.prepareScreenplayForTransformation = function (screenplay) {
+        var screenplayItems = [];
+        angular.forEach(screenplay, function (conv, index, obj) {
+            var convItems = $ctrl.prepareConversationForTransformation(conv);
+            screenplayItems = screenplayItems.concat(convItems);
+        })
+        var halfway = {screenplay: {keepOrder: screenplayItems}};
+        return halfway;
+
     }
 
     this.json2xml = function (json) {
         var config = {
             keepOrder: true,
             orderContainerName: "keepOrder",
-            // arrayOrderItems: ["message", "items", "forward"],
             useDoubleQuotes: true
         }
-        return new X2JS(config).json2xml_str(json, 2);
+        var xml = new X2JS(config).json2xml_str(json);
+        return vkbeautify.xml(xml, 2);
     }
 }
