@@ -27,8 +27,8 @@ function ConversationCtrl(characterFactory) {
         this.model.items.push(m);
     };
     this.addInquiry = function() {
-        var c1 = new Choice("start", "choice one");
-        var c2 = new Choice("start", "choice two");
+        var c1 = new Choice();
+        var c2 = new Choice();
         var inquiry = new Inquiry([c1, c2]);
         this.model.items.push(inquiry);
     };
