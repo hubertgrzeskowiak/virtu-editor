@@ -34,8 +34,8 @@ function MessageCtrl() {
         this.model = defaultValue(this.model, new Message());
         this.model.id = defaultValue(this.model.id, "");
         this.model.text = defaultValue(this.model.text, "");
+        this.model.isIncoming = defaultValue(this.model.isIncoming, true);
         this.isFocused = false;
-        this.model.isIncoming = true;
         this.toggleSide = function () {
             this.model.isIncoming = !this.model.isIncoming;
         }
