@@ -32,7 +32,7 @@ textarea:focus {
   display: inline-block;
   vertical-align: top;
 }
-.conversations .conversation > hr {
+.conversations conversation hr {
   border-top-color: rgba(0, 0, 0, 0.2);
 }
 .conversation-header {
