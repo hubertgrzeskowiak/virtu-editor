@@ -1,4 +1,4 @@
-angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
+angular.module('myApp.edit', ['ngRoute', 'myApp.message', 'myApp.conversation', 'ngSweetAlert'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/edit', {
@@ -10,67 +10,16 @@ angular.module('myApp.edit', ['ngRoute', 'myApp.conversation', 'ngSweetAlert'])
 
     .config(function (conversationsProvider) {
         var startingConversations = [
-            {
-                key: "Jen", items: [
-                {
-                    type: "message",
-                    id: "start",
-                    text: "Hello and welcome"
-                },
-                {
-                    type: "message",
-                    text: "You can start editing this story by clicking any of these " +
-                    "speech bubbles."
-                }
-            ]
-            },
-            {
-                key: "Lola", items: [
-                {
-                    type: "message",
-                    text: "you can have multiple characters with an own dialogue for each"
-                },
-                {
-                    type: "message",
-                    text: "using the big plus sign to the right you can also add new " +
-                    "characters to your story!"
-                }
-            ]
-            }
-        ];
-
-        var startingConversations2 = [
-            {
-                key: "Jen", items: [
-                {
-                    message: {
-                        id: "start",
-                        text: "Hello and welcome"
-                    }
-                },
-                {
-                    message: {
-                        text: "You can start editing this story by clicking any of these " +
-                            "speech bubbles."
-                    }
-                }
-            ]
-            },
-            {
-                key: "Lola", items: [
-                {
-                    message: {
-                        text: "you can have multiple characters with an own dialogue for each"
-                    }
-                },
-                {
-                    message: {
-                        text: "using the big plus sign to the right you can also add new " +
-                            "characters to your story!"
-                    }
-                }
-            ]
-            }
+            new Conversation("Jen", [
+                new Message("Hello and welcome", "start"),
+                new Message("You can start editing this story by clicking any of these " +
+                    "speech bubbles.")
+            ]),
+            new Conversation("Lola", [
+                new Message("you can have multiple characters with an own dialogue for each"),
+                new Message("using the big plus sign to the right you can also add new " +
+                    "characters to your story!")
+            ])
         ];
         conversationsProvider.setInitialData(startingConversations);
     })
