@@ -8,7 +8,7 @@
         </button>
     </div>
     <div class="conversation-items">
-        <component ng-repeat="item in $ctrl.model.items" name="item.type" args="{model: 'item'}">
+        <component ng-repeat="item in $ctrl.model.items" name="item.type" args="{model: 'item', 'on-delete': '$ctrl.removeItem(item)'}">
         </component>
     </div>
 
