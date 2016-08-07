@@ -9,17 +9,14 @@ angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.c
     controller: ['characterFactory', ConversationCtrl]
 });
 
-function Conversation(includeRandomMessage) {
-    this.key = "";
-    this.items = [];
-    if (includeRandomMessage) {
-        this.items.push(new RandomMessage());
-    }
+function Conversation(key, items) {
+    this.key = defaultValue(key, "");
+    this.items = defaultValue(items, []);
 }
 
 function ConversationCtrl(characterFactory) {
     this.$onInit = function() {
-        this.model = this.model || new Conversation(true);
+        this.model = this.model || new Conversation("new character", [new RandomMessage()]);
         this.character = characterFactory.create();
         this.character.name = this.model.key;
     };

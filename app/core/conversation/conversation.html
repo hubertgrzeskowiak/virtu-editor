@@ -8,9 +8,8 @@
         </button>
     </div>
     <div class="conversation-items">
-        <message ng-repeat="item in $ctrl.model.items" model="item"
-                 on-delete="$ctrl.removeItem(item)">
-        </message>
+        <component ng-repeat="item in $ctrl.model.items" name="item.type" args="{model:item}">
+        </component>
     </div>
 
     <div class="conversation-buttons">

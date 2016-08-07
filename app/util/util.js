@@ -30,4 +30,28 @@ angular.module("util.autoGrow", [])
                     });
                 }
             };
-        });
+        })
+
+    .directive('component', ['$compile',
+        function ($compile) {
+            return {
+                restrict: 'AEM',
+                scope: {
+                    name: '<',
+                    args: '<'
+                },
+                controller: function ($scope, $element) {
+                    var args = $scope.args;
+                    var argsStr = ""
+                    if (typeof args !== 'undefined' && args.constructor === Object) {
+                        for (arg in args) {
+                            argsStr += ' ' + arg + '="args.' + arg + '"';
+                        }
+                    }
+                    var elem = "<" + $scope.name + argsStr + "></" + $scope.name + ">";
+                    var component = $compile(elem)($scope)[0];
+                    $element.append(component);
+                }
+            }
+        }
+    ])
