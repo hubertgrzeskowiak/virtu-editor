@@ -64,6 +64,6 @@ function EditController($rootScope, SweetAlert, convService) {
         })
     }
     this.removeConversation = function (conversation) {
-        conversations.remove(conversation.key);
+        convService.remove(conversation.key);
     }
 }
