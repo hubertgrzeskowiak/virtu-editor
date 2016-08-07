@@ -17,7 +17,7 @@ function InquiryController() {
 
 function Inquiry(choices) {
     this.type = "inquiry";
-    this.choices = defaultValue(choices, []);
+    this.choices = defaultValue(choices, [new Choice(), new Choice()]);
 }
 
 function Choice(result, text) {
