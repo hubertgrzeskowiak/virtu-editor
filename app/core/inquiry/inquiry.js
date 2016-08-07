@@ -3,7 +3,8 @@ angular.module('myApp.inquiry', [])
     .component('inquiry', {
         templateUrl: 'core/inquiry/inquiry.html',
         bindings: {
-            model: "="
+            model: "=",
+            onDelete: "&"
         },
         controller: InquiryController
     })
