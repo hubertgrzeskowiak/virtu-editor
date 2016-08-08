@@ -13,9 +13,17 @@
     </div>
 
     <div class="conversation-buttons">
-        <button class="add-conversation-button" ng-click="$ctrl.addMessage()">add message</button>
-        <button class="add-inquiry-button" ng-click="$ctrl.addInquiry()">add inquiry</button>
-        <button class="add-forwarding-button">add forwarding</button>
+        <button title="add message" class="btn btn-primary add-message-button"
+                ng-click="$ctrl.addMessage()">
+            <span class="glyphicon glyphicon-comment"></span>
+        </button
+        ><button title="add inquiry" class="btn btn-primary add-inquiry-button"
+                ng-click="$ctrl.addInquiry()">
+            <span class="glyphicon glyphicon-question-sign"></span>
+        </button
+        ><button title="add forwarding" class="btn btn-primary add-forwarding-button">
+            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+        </button>
     </div>
 </div>
 

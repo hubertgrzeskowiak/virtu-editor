@@ -92,6 +92,7 @@ input, textarea {
 }
 
 .add-conversation {
+  color: #888;
   .conversation-image {
     font-size: 70px;
     text-align: center;
@@ -100,6 +101,42 @@ input, textarea {
       line-height: 100px;
       color: @page-bg-color;
     }
+  }
+}
+
+.conversation-buttons {
+  button {
+    width: 33%;
+    height: 50px;
+    font-size: 30px;
+    position: relative;
+    border-radius: 0;
+    &::after {
+      content: "\f067"; /* FA plus sign */
+      font-family: FontAwesome;
+      position: absolute;
+      top: 45%;
+      left: 31%;
+      font-size: 20px;
+    }
+    & > * {
+      position: relative;
+      left: 10px;
+    }
+  }
+  button:first-of-type {
+    border-radius: 10px 0 0 10px;
+  }
+  button:last-of-type {
+    border-radius: 0 10px 10px 0;
+  }
+  .add-forwarding-button {
+    .fa {
+      position: relative;
+      top: -0.1em;
+      left: 0.2em;
+    }
+
   }
 }
 
