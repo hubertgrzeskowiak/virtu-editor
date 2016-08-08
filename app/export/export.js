@@ -48,20 +48,23 @@ function Exporter(conversations, jsonTransformer, $scope) {
         return msg;
     }
 
-    this.prepareInquiryForTransformation = function(key, item) {
+    this.prepareInquiryForTransformation = function (key, item) {
         var choices = [];
-        angular.forEach(item.choices, function(value, index, obj) {
+        angular.forEach(item.choices, function (value, index, obj) {
             choices.push({
-                "_result": value.result,
-                "__text": value.text
+                choice: {
+                    "_result": value.result,
+                    "__text": value.text
+                }
             })
         })
         var inquiry = {
             inquiry: {
                 "_target": key,
-                keepOrder: [choices]
+                keepOrder: choices
             }
         }
+        return inquiry;
     }
 
     this.prepareConversationItemForTransformation = function (key, item) {
