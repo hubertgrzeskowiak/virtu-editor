@@ -1,4 +1,4 @@
-angular.module('myApp.message', ['util.autoGrow'])
+angular.module('myApp.message', ['textarea.autoheight'])
 
     .component('message', {
         templateUrl: 'core/message/message.html',

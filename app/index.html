@@ -17,11 +17,12 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<ul class="menu">
-    <li><a href="#!/edit">edit</a></li>
-    <li><a href="#!/test">test</a></li>
-</ul>
-<hr/>
+<nav class="mainmenu" ng-controller="NavigationUtilCtrl">
+    <ul class="menu">
+        <li><a href="#!/edit">edit</a></li>
+        <li><a href="#!/test">test</a></li>
+    </ul>
+</nav>
 
 
 <div ng-view></div>
@@ -40,8 +41,10 @@
 <script src="bower_components/ng-sweet-alert-promised/dist/ng-sweet-alert.min.js"></script>
 
 <script src="app.js"></script>
-<script src="util/util.js"></script>
-
+<script src="util/bootstrap-angular.js"></script>
+<script src="util/component.js"></script>
+<script src="util/navigationutil.js"></script>
+<script src="util/textarea-autoheight.js"></script>
 
 <script src="edit/edit.js"></script>
 <script src="testrun/testrun.js"></script>
@@ -52,7 +55,6 @@
 <script src="core/conversation/conversationsservice.js"></script>
 <script src="core/inquiry/inquiry.js"></script>
 <script src="core/message/message.js"></script>
-<script src="core/version/version.js"></script>
 
 <script src="bower_components/x2js/xml2json.js"></script>
 <script src="bower_components/vkbeautify/index.js"></script>

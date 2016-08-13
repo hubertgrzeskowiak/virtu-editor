@@ -1,4 +1,4 @@
-angular.module('myApp.export', ['myApp.conversation'])
+angular.module('myApp.export', ['myApp.conversation', 'bootstrap-angular'])
 
     .component('modelDebug', {
         templateUrl: 'export/modeldebug.html',
@@ -18,8 +18,6 @@ function Exporter(conversations, jsonTransformer, $scope) {
                 $ctrl.intermediate = $ctrl.prepareScreenplayForTransformation($ctrl.model);
                 $ctrl.xml = $ctrl.json2xml($ctrl.intermediate);
             }, true)
-        // this.intermediate = this.prepareScreenplayForTransformation(this.model);
-        // this.xml = this.json2xml(this.intermediate);
     }
     this.print = function () {
         console.log(this.model)

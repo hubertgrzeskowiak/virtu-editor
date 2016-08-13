@@ -1,4 +1,4 @@
-angular.module('myApp.edit', ['ngRoute', 'myApp.message', 'myApp.conversation', 'ngSweetAlert'])
+angular.module('myApp.edit', ['ngRoute', 'navigationutil', 'myApp.message', 'myApp.conversation', 'ngSweetAlert'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/edit', {

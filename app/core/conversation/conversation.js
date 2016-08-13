@@ -1,4 +1,4 @@
-angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.character'])
+angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.character', 'component'])
 
 .component('conversation', {
     templateUrl: 'core/conversation/conversation.html',
