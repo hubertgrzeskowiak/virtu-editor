@@ -10,19 +10,3 @@ angular.module('myApp', [
         $locationProvider.hashPrefix('!');
         $routeProvider.otherwise({redirectTo: '/edit'});
     }])
-
-//     .component('import', {
-//         'template': '<button ng-click="$ctrl.import()">import</button>',
-//         'controller': ["$scope", ImportController]
-//     });
-//
-// function ImportController($scope) {
-//     this.$onInit = function () {
-//
-//     }
-//
-//     this.import = function () {
-//         console.log("importing model into scope");
-//         console.log($scope)
-//     }
-// }
