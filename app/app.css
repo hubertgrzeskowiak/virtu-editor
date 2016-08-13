@@ -9,10 +9,30 @@ input:focus,
 textarea:focus {
   cursor: text;
 }
-.menu {
+nav.mainmenu {
+  color: white;
+  font-size: 120%;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 4em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  background: #128C7E;
+}
+nav.mainmenu a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  padding: 0 2em;
+  background: transparent;
+  transition: background 0.15s;
+}
+nav.mainmenu a:hover {
+  background: #075E54;
+}
+nav.mainmenu ul {
   list-style: none;
 }
-.menu > li {
+nav.mainmenu ul li {
   display: inline;
 }
 #versioninfo {
@@ -98,6 +118,12 @@ textarea:focus {
   font-size: 30px;
   position: relative;
   border-radius: 0;
+  background-color: #128C7E;
+  transition: background-color 0.15s;
+  border-color: transparent;
+}
+.conversation-buttons button:hover {
+  background-color: #075E54;
 }
 .conversation-buttons button::after {
   content: "\f067";
