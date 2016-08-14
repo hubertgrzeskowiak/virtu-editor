@@ -1,5 +1,5 @@
 body {
-  background: #eeeeee;
+  background: #ECE5DD;
 }
 main {
   min-height: 300px;
@@ -73,7 +73,7 @@ nav.mainmenu ul li {
   margin: auto;
   padding: 0;
   border-radius: 50%;
-  background: #eeeeee url('images/blonde_smile.png') center center / cover no-repeat;
+  background: #ECE5DD url('images/blonde_smile.png') center center / cover no-repeat;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s, transform 0.2s;
@@ -117,7 +117,7 @@ nav.mainmenu ul li {
 }
 .add-conversation .conversation-image span {
   line-height: 100px;
-  color: #eeeeee;
+  color: #ECE5DD;
 }
 .conversation-buttons button {
   width: 33%;
