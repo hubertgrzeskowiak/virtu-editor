@@ -17,15 +17,16 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<nav class="mainmenu" ng-controller="NavigationUtilCtrl">
+<nav class="mainmenu" ng-controller="NavigationUtilCtrl as navUtilCtrl">
+    <img src="images/virtu%20logo.png" alt="Virtù logo" height="50px" width="50px">
     <ul class="menu">
-        <li><a href="#!/edit">edit</a></li>
-        <li><a href="#!/test">test</a></li>
+        <li><a ng-class="{active : navUtilCtrl.isActive('/edit')}" href="#!/edit">edit</a></li>
+        <li><a ng-class="{active : navUtilCtrl.isActive('/test')}" href="#!/test">test</a></li>
     </ul>
 </nav>
 
 
-<div ng-view></div>
+<main ng-view></main>
 <!--<export-button></export-button>-->
 <model-debug></model-debug>
 

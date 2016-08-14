@@ -1,6 +1,9 @@
 body {
   background: #eeeeee;
 }
+main {
+  min-height: 300px;
+}
 input,
 textarea {
   cursor: pointer;
@@ -17,6 +20,7 @@ nav.mainmenu {
   line-height: 4em;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   background: #128C7E;
+  padding-left: 50px;
 }
 nav.mainmenu a {
   display: inline-block;
@@ -26,14 +30,17 @@ nav.mainmenu a {
   background: transparent;
   transition: background 0.15s;
 }
-nav.mainmenu a:hover {
+nav.mainmenu a:hover,
+nav.mainmenu a.active {
   background: #075E54;
 }
 nav.mainmenu ul {
+  display: inline-block;
   list-style: none;
+  margin: 0;
 }
 nav.mainmenu ul li {
-  display: inline;
+  display: inline-block;
 }
 #versioninfo {
   position: absolute;
@@ -66,7 +73,7 @@ nav.mainmenu ul li {
   margin: auto;
   padding: 0;
   border-radius: 50%;
-  background: #eeeeee url('resources/img/blonde_smile.png') center center / cover no-repeat;
+  background: #eeeeee url('images/blonde_smile.png') center center / cover no-repeat;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s, transform 0.2s;

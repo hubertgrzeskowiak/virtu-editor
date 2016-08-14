@@ -14,6 +14,10 @@ body {
   background: @page-bg-color;
 }
 
+main {
+  min-height: 300px;
+}
+
 input, textarea {
   cursor: pointer;
   &:focus {
@@ -29,7 +33,7 @@ nav.mainmenu {
   line-height: 4em;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
   background: @whatsapp-teal-green-bright-color;
-  ;
+  padding-left: 50px;
   a {
     display: inline-block;
     color: inherit;
@@ -37,14 +41,16 @@ nav.mainmenu {
     padding: 0 2em;
     background: transparent;
     transition: background 0.15s;
-    &:hover {
+    &:hover, &.active {
       background: @whatsapp-teal-green-dark-color;
     }
   }
   ul {
+    display: inline-block;
     list-style: none;
+    margin: 0;
     li {
-      display: inline;
+      display: inline-block;
     }
   }
 }
@@ -80,7 +86,7 @@ nav.mainmenu {
     margin: auto;
     padding: 0;
     border-radius: 50%;
-    background: @page-bg-color url('resources/img/blonde_smile.png') center center/cover no-repeat;
+    background: @page-bg-color url('images/blonde_smile.png') center center/cover no-repeat;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.2s, transform 0.2s;
