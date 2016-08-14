@@ -1,0 +1,38 @@
+{
+  "name": "ng-sweet-alert",
+  "version": "1.1.3",
+  "description": "Promised AngularJS wrapper for SweetAlert",
+  "main": "ng-sweet-alert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node_modules/.bin/gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LucianoGraziani/ngSweetAlert.git"
+  },
+  "keywords": [
+    "angular",
+    "AngularJs",
+    "sweetalert",
+    "sweet",
+    "alert"
+  ],
+  "author": "Luciano Graziani <lgraziani2712@gmail.com> (http://code-n-mocha.tumblr.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LucianoGraziani/ngSweetAlert/issues"
+  },
+  "private": true,
+  "homepage": "https://github.com/LucianoGraziani/ngSweetAlert#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3"
+  },
+  "dependencies": {
+    "del": "^2.2.0"
+  }
+}

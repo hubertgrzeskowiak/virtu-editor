@@ -1,0 +1,22 @@
+{
+  "name": "abdmob/x2js",
+  "main": "xml2json.min.js",
+  "description": "XML <=> JSON mapping/converting library",
+  "license": "Apache Licence v2",
+  "ignore": [
+    ".hg*",
+    ".project",
+    "*.html",
+    "**/*.txt"
+  ],
+  "homepage": "https://github.com/anvog/x2js",
+  "_release": "71bc534003",
+  "_resolution": {
+    "type": "branch",
+    "branch": "Feature-keepOrder",
+    "commit": "71bc5340030784c69700d84b7a9e1bf28564f737"
+  },
+  "_source": "https://github.com/anvog/x2js.git",
+  "_target": "Feature-keepOrder",
+  "_originalSource": "https://github.com/anvog/x2js.git"
+}
