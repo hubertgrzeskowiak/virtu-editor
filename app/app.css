@@ -59,7 +59,7 @@ nav.mainmenu ul li {
   display: inline-block;
   vertical-align: top;
 }
-.conversations conversation hr {
+.conversations .conversation hr {
   border-top-color: rgba(0, 0, 0, 0.2);
 }
 .conversation-header {
@@ -265,6 +265,9 @@ nav.mainmenu ul li {
 .message:hover button,
 .message button:focus {
   opacity: 1;
+}
+.message textarea {
+  white-space: pre-wrap;
 }
 .message textarea,
 .message input {
