@@ -82,7 +82,9 @@ function Exporter(conversations, jsonTransformer, $scope) {
             if (item != null) {
                 convItems.push(item);
             }
-        })
+        });
+        var end = {"end":""};
+        convItems.push(end);
         return convItems;
     }
 
