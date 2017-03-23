@@ -53,9 +53,10 @@ function CharactersManager(initialData) {
 
 
 function Character(name, id) {
+    this.nameToId = function (name) {
+        return name.toLowerCase().replace(/ /g, "-");
+    };
     this.name = defaultValue(name, "new character");
     this.id = defaultValue(id, this.nameToId(this.name));
-    this.nameToId = function (name) {
-        return name.toLowerCase().replaceAll(/ /g, "-");
-    };
+
 }

@@ -16,18 +16,12 @@ function Conversation(key, items) {
 
 function ConversationCtrl(characters) {
     this.$onInit = function() {
-        if (typeof this.model === 'undefined' || this.model === {}) {
-            this.character = characters.add();
-        } else {
-            if (characters.exists(this.model.key)) {
-                this.character = characters.get(this.model.key);
-            } else {
-                characters.add()
-            }
-        }
         this.model = this.model || new Conversation("new character", [new RandomMessage()]);
-        this.character = characters.add();
-        this.character.name = this.model.key;
+        if (characters.exists(this.model.key)) {
+            this.character = characters.get(this.model.key);
+        } else {
+            this.character = characters.add(this.model.key, this.model.key.toLowerCase());
+        }
     };
     this.addMessage = function(text, id) {
         var m = new Message();
