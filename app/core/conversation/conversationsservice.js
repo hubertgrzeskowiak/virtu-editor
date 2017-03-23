@@ -1,13 +1,10 @@
 angular.module('myApp.conversation')
 
-    .service('conversations2', ConversationsManager)
     .provider('conversations', function() {
         var initialData = [];
-
         this.setInitialData = function(data) {
             initialData = data;
         }
-
         this.$get = function() {
             return new ConversationsManager(initialData);
         }
@@ -32,7 +29,6 @@ function ConversationsManager(initialData) {
         var c = new Conversation();
         if (typeof key !== 'string') {
             throw new TypeError("conversation key must be string");
-            return;
         }
         // look up if the id is used already
         if (!this.exists(key)) {
