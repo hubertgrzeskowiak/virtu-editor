@@ -1,13 +1,13 @@
 <div class="inquiry message outgoing" ng-class="{'focused': $ctrl.isFocused}">
 
     <div class="choice" ng-repeat="choice in $ctrl.model.choices">
-        <input class="choice-text" type="text" placeholder="type the choice text here"
+        <input class="choice-text" type="text" placeholder="text for this choice"
                ng-model="choice.text" ng-blur="$ctrl.isFocused = false"
                ng-focus="$ctrl.isFocused = true"/><br>
         <div class="choice-result message-id not-empty">
             <i class="message-id-icon fa fa-location-arrow" aria-hidden="true">
             </i><input class="choice-result-text message-id-text" type="text" value="said-yes"
-                       placeholder="type target message id here" ng-model="choice.result"
+                       placeholder="target label" ng-model="choice.result"
                        ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"/>
         </div>
 

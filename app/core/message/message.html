@@ -3,7 +3,7 @@
     <div class="message-id"
          ng-class="($ctrl.model.id == '') ? 'empty' : 'not-empty'">
         <i class="message-id-icon fa fa-crosshairs" aria-hidden="true">
-        </i><input type="text" class="message-id-text" placeholder="message id"
+        </i><input type="text" class="message-id-text" placeholder="add a unique label"
                ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"
                ng-model="$ctrl.model.id"/>
     </div>
