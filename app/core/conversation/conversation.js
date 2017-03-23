@@ -6,7 +6,7 @@ angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.c
         'model': '=',
         'removeConversation': '&onRemove'
     },
-    controller: ['characterFactory', ConversationCtrl]
+    controller: ['characters', ConversationCtrl]
 });
 
 function Conversation(key, items) {
@@ -14,10 +14,19 @@ function Conversation(key, items) {
     this.items = defaultValue(items, []);
 }
 
-function ConversationCtrl(characterFactory) {
+function ConversationCtrl(characters) {
     this.$onInit = function() {
+        if (typeof this.model === 'undefined' || this.model === {}) {
+            this.character = characters.add();
+        } else {
+            if (characters.exists(this.model.key)) {
+                this.character = characters.get(this.model.key);
+            } else {
+                characters.add()
+            }
+        }
         this.model = this.model || new Conversation("new character", [new RandomMessage()]);
-        this.character = characterFactory.create();
+        this.character = characters.add();
         this.character.name = this.model.key;
     };
     this.addMessage = function(text, id) {
