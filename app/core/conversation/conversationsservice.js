@@ -10,6 +10,11 @@ angular.module('myApp.conversation')
         }
     })
 
+/**
+ * This manager acts as a specialized list for characters. The characters are ordered and identified by a unique key.
+ * @param initialData a list of Conversation objects in case you want to start with some initial data.
+ * @constructor
+ */
 function ConversationsManager(initialData) {
     // Conversations should have a defined order, so using id as key is not suitable.
     // Instead we're saving the id as property value.
