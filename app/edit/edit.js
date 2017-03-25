@@ -1,4 +1,4 @@
-angular.module('myApp.edit', ['ngRoute', 'navigationutil', 'myApp.message', 'myApp.conversation', 'ngSweetAlert'])
+angular.module('myApp.edit', ['ngRoute', 'navigationutil', 'myApp.message', 'myApp.conversation', 'jutaz.ngSweetAlertAsPromised'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/edit', {
@@ -47,20 +47,22 @@ function EditController($rootScope, SweetAlert, convService) {
         }
 
         SweetAlert.swal({
-            html: true,
             title: "<div class='conversation-header'>" +
-            "<div class='conversation-image'></div>" +
-            "</div>" +
-            "Are you sure?",
+                "<div class='conversation-image'></div>" +
+                "</div>" +
+                "Are you sure?",
             text: "Removing the whole conversation is permanent!",
             showCancelButton: true,
             cancelButtonText: randomCancel(),
             confirmButtonText: randomConfirm(),
             confirmButtonColor: "#D9534F",
             allowEscapeKey: true,
-            allowOutsideClick: true
+            allowOutsideClick: true,
+            reverseButtons: true
         }).then(function () {
             $ctrl.removeConversation(conversation);
+        }, function() {
+            // aborted
         })
     }
     this.removeConversation = function (conversation) {
