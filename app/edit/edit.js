@@ -55,10 +55,7 @@ function EditController($rootScope, SweetAlert, convService) {
             showCancelButton: true,
             cancelButtonText: randomCancel(),
             confirmButtonText: randomConfirm(),
-            confirmButtonColor: "#D9534F",
-            allowEscapeKey: true,
-            allowOutsideClick: true,
-            reverseButtons: true
+            confirmButtonColor: "#D9534F"
         }).then(function () {
             $ctrl.removeConversation(conversation);
         }, function() {
