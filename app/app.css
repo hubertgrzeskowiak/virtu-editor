@@ -322,3 +322,20 @@ nav.mainmenu ul li {
   background: #ffffaa;
   white-space: pre-wrap;
 }
+.ngFade {
+  transition: 0.3s linear all;
+  -webkit-transition: 0.3s linear all;
+}
+.ngFade.ng-enter {
+  opacity: 0;
+  width: auto;
+}
+.ngFade.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.ngFade.ng-leave {
+  opacity: 1;
+}
+.ngFade.ng-leave.ng-leave-active {
+  opacity: 0;
+}

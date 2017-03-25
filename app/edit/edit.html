@@ -1,6 +1,7 @@
 <div ng-controller="EditController as $ctrl">
     <div class="conversations">
-        <conversation ng-repeat="conversation in $ctrl.conversations" model="conversation" on-remove="$ctrl.askRemoveConversation(conversation)">
+        <conversation ng-repeat="conversation in $ctrl.conversations" model="conversation"
+                      on-remove="$ctrl.askRemoveConversation(conversation)" class="ngFade">
         </conversation>
         <div class="add-conversation">
             <div class="conversation-header">
