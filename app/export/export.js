@@ -3,7 +3,7 @@ angular.module('myApp.export', ['myApp.conversation', 'bootstrap-angular'])
     .component('modelDebug', {
         templateUrl: 'export/modeldebug.html',
         controller: ['conversations', 'jsonTransformer', '$scope', Exporter]
-    })
+    });
 
 function Exporter(conversations, jsonTransformer, $scope) {
     var $ctrl = this;
@@ -17,22 +17,22 @@ function Exporter(conversations, jsonTransformer, $scope) {
             function () {
                 $ctrl.intermediate = $ctrl.prepareScreenplayForTransformation($ctrl.model);
                 $ctrl.xml = $ctrl.json2xml($ctrl.intermediate);
-            }, true)
-    }
+            }, true);
+    };
     this.print = function () {
         console.log(this.model)
-    }
+    };
 
     this.printJSON = function () {
         console.log(angular.toJson(this.model, 2));
-    }
+    };
 
     this.prepareMessageForTransformation = function (key, item) {
         var msg = {
             message: {
                 "__text": item.text
             }
-        }
+        };
         if (item.isIncoming) {
             msg.message._from = key;
             msg.message._to = "you";
@@ -44,7 +44,7 @@ function Exporter(conversations, jsonTransformer, $scope) {
             msg.message._id = item.id;
         }
         return msg;
-    }
+    };
 
     this.prepareInquiryForTransformation = function (key, item) {
         var choices = [];
@@ -54,16 +54,16 @@ function Exporter(conversations, jsonTransformer, $scope) {
                     "_result": value.result,
                     "__text": value.text
                 }
-            })
-        })
+            });
+        });
         var inquiry = {
             inquiry: {
                 "_target": key,
                 keepOrder: choices
             }
-        }
+        };
         return inquiry;
-    }
+    };
 
     this.prepareConversationItemForTransformation = function (key, item) {
         if (! ("type" in item)) {
@@ -77,7 +77,7 @@ function Exporter(conversations, jsonTransformer, $scope) {
             return this.prepareInquiryForTransformation(key, item);
         }
         console.log("how do we export an item of type " + item.type + "?");
-    }
+    };
 
     this.prepareConversationForTransformation = function (conv) {
         var convItems = [];
@@ -97,19 +97,19 @@ function Exporter(conversations, jsonTransformer, $scope) {
         angular.forEach(screenplay, function (conv, index, obj) {
             var convItems = $ctrl.prepareConversationForTransformation(conv);
             screenplayItems = screenplayItems.concat(convItems);
-        })
+        });
         var halfway = {screenplay: {keepOrder: screenplayItems}};
         return halfway;
 
-    }
+    };
 
     this.json2xml = function (json) {
         var config = {
             keepOrder: true,
             orderContainerName: "keepOrder",
             useDoubleQuotes: true
-        }
+        };
         var xml = new X2JS(config).json2xml_str(json);
         return vkbeautify.xml(xml, 2);
-    }
+    };
 }
