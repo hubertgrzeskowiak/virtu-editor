@@ -66,13 +66,17 @@ function Exporter(conversations, jsonTransformer, $scope) {
     }
 
     this.prepareConversationItemForTransformation = function (key, item) {
+        if (! ("type" in item)) {
+            console.log("WARNING: found a conversation item with no type definition.", key, item);
+            return;
+        }
         if (item.type === "message") {
             return this.prepareMessageForTransformation(key, item);
-        } else if (item.type === "inquiry") {
-            return this.prepareInquiryForTransformation(key, item);
-        } else {
-            console.log("how do we export " + item.type + "?");
         }
+        if (item.type === "inquiry") {
+            return this.prepareInquiryForTransformation(key, item);
+        }
+        console.log("how do we export an item of type " + item.type + "?");
     }
 
     this.prepareConversationForTransformation = function (conv) {

@@ -1,4 +1,4 @@
-angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.character', 'component'])
+angular.module('myApp.conversation', ['myApp.message', 'myApp.inquiry', 'myApp.forwarding', 'myApp.character', 'component'])
 
 .component('conversation', {
     templateUrl: 'core/conversation/conversation.html',
@@ -34,6 +34,10 @@ function ConversationCtrl(characters) {
         var c2 = new Choice();
         var inquiry = new Inquiry([c1, c2]);
         this.model.items.push(inquiry);
+    };
+    this.addForwarding = function() {
+        var f = new Forwarding();
+        this.model.items.push(f);
     };
     this.removeItem = function(item) {
         var i = this.model.items.indexOf(item);

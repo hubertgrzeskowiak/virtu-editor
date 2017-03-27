@@ -1,0 +1,15 @@
+<div class="forwarding conversation-item" ng-class="{'focused': $ctrl.isFocused}">
+    <div class="content">
+        <i class="message-id-icon fa fa-location-arrow" aria-hidden="true">
+        </i><input type="text" class="forwarding-target message-id-text" placeholder="what comes next?"
+                   ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"
+                   ng-model="$ctrl.model.target"/>
+    </div>
+    <div class="controls">
+        <button title="delete this forwarding"
+                class="delete-button btn btn-md btn-danger" ng-click="$ctrl.onDelete()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+</div>
+<hr/>
