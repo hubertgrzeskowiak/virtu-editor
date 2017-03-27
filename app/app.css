@@ -7,10 +7,14 @@ main {
 input,
 textarea {
   cursor: pointer;
+  padding: 2px;
+  margin: 0;
 }
 input:focus,
 textarea:focus {
   cursor: text;
+  box-shadow: 0;
+  outline: 0;
 }
 nav.mainmenu {
   color: white;
@@ -78,10 +82,12 @@ nav.mainmenu ul li {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s, transform 0.2s;
 }
-.conversation-header .conversation-image:hover,
-.conversation-header .conversation-image:focus {
+.conversation-header .conversation-image:hover {
   transform: scale(1.1, 1.1);
   box-shadow: 0 2px 25px rgba(0, 0, 0, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.5);
+}
+.conversation-header .conversation-image:focus {
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.5);
 }
 .conversation-header .conversation-name {
   border: 0;
@@ -156,7 +162,7 @@ nav.mainmenu ul li {
   top: -0.1em;
   left: 0.2em;
 }
-.message {
+.conversation-item {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
   padding: 0.2em 1em 1em;
   background: white;
@@ -164,7 +170,7 @@ nav.mainmenu ul li {
   margin: 1em;
   position: relative;
 }
-.message::before {
+.conversation-item::before {
   content: "";
   display: block;
   position: absolute;
@@ -175,7 +181,7 @@ nav.mainmenu ul li {
   background: transparent;
   transition: background 0.2s;
 }
-.message::after {
+.conversation-item::after {
   content: "";
   display: block;
   position: absolute;
@@ -187,124 +193,124 @@ nav.mainmenu ul li {
   border-color: transparent;
   transition: border-color 0.2s;
 }
-.message.incoming {
+.conversation-item.incoming {
   border-radius: 0 10px 10px 10px;
   background: white;
 }
-.message.incoming::before {
+.conversation-item.incoming::before {
   transform: skew(45deg);
   left: -10px;
   background: white;
   border-radius: 8px 0;
   box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-.message.incoming::after {
+.conversation-item.incoming::after {
   left: -10px;
   transform-origin: 0 0;
   transform: rotate(-45deg);
   border-color: white;
 }
-.message.incoming.focused {
+.conversation-item.incoming.focused {
   background: #f4ffff;
 }
-.message.incoming.focused::before {
+.conversation-item.incoming.focused::before {
   background: #f4ffff;
 }
-.message.incoming.focused::after {
+.conversation-item.incoming.focused::after {
   border-color: #f4ffff;
 }
-.message.outgoing {
+.conversation-item.outgoing {
   border-radius: 10px 0 10px 10px;
   background: #DCF8C6;
 }
-.message.outgoing::before {
+.conversation-item.outgoing::before {
   transform: skew(-45deg);
   right: -10px;
   background: #DCF8C6;
   border-radius: 0 8px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-.message.outgoing::after {
+.conversation-item.outgoing::after {
   right: -10px;
   transform-origin: 100% 0;
   transform: rotate(45deg);
   border-color: #DCF8C6;
 }
-.message.outgoing.focused {
+.conversation-item.outgoing.focused {
   background: #e9fff2;
 }
-.message.outgoing.focused::before {
+.conversation-item.outgoing.focused::before {
   background: #e9fff2;
 }
-.message.outgoing.focused::after {
+.conversation-item.outgoing.focused::after {
   border-color: #e9fff2;
 }
-.message > * {
+.conversation-item .content {
   padding-right: 2em;
 }
-.message button {
+.conversation-item button {
   opacity: 0;
   transition: opacity 0.2s;
   position: absolute;
   right: 1em;
   padding: 1px 5px;
 }
-.message button.delete-button {
+.conversation-item button.delete-button {
   top: 0.4em;
 }
-.message button.switch-button {
+.conversation-item button.switch-button {
   top: 2.4em;
 }
-.message button.goto-button {
+.conversation-item button.goto-button {
   top: 1.8em;
   right: 0;
 }
-.message button .fa {
+.conversation-item button .fa {
   width: 1em;
 }
-.message:hover button,
-.message button:focus {
+.conversation-item:hover button,
+.conversation-item button:focus {
   opacity: 1;
 }
-.message textarea {
+.conversation-item textarea {
   white-space: pre-wrap;
 }
-.message textarea,
-.message input {
+.conversation-item textarea,
+.conversation-item input {
   background: transparent;
   border: none;
   width: 100%;
 }
-.message .message-id {
+.conversation-item .message-id {
   font-weight: bold;
   opacity: 0;
   transition: opacity 0.3s;
 }
-.message .message-id :-moz-placeholder {
+.conversation-item .message-id :-moz-placeholder {
   font-weight: normal;
 }
-.message .message-id ::-moz-placeholder {
+.conversation-item .message-id ::-moz-placeholder {
   font-weight: normal;
 }
-.message .message-id ::-webkit-input-placeholder {
+.conversation-item .message-id ::-webkit-input-placeholder {
   font-weight: normal;
 }
-.message .message-id :-ms-input-placeholder {
+.conversation-item .message-id :-ms-input-placeholder {
   font-weight: normal;
 }
-.message .message-id.not-empty {
+.conversation-item .message-id.not-empty {
   opacity: 0.6;
 }
-.message .message-id .message-id-icon {
+.conversation-item .message-id .message-id-icon {
   display: inline-block;
   width: 0;
   overflow: visible;
 }
-.message .message-id .message-id-text {
+.conversation-item .message-id .message-id-text {
   padding-left: 16px;
 }
-.message:hover .message-id,
-.message.focused .message-id {
+.conversation-item:hover .message-id,
+.conversation-item.focused .message-id {
   opacity: 1;
 }
 .inquiry .choice {

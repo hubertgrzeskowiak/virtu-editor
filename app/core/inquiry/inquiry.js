@@ -12,7 +12,7 @@ angular.module('myApp.inquiry', [])
 function InquiryController() {
     this.$onInit = function() {
         this.isFocused = false;
-        this.model = defaultValue(this.model, new Inquiry())
+        this.model = defaultValue(this.model, new Inquiry());
     }
 }
 

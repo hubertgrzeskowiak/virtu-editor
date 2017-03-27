@@ -20,8 +20,12 @@ main {
 
 input, textarea {
   cursor: pointer;
+  padding: 2px;
+  margin: 0;
   &:focus {
     cursor: text;
+    box-shadow: 0;
+    outline: 0;
   }
 }
 
@@ -90,9 +94,12 @@ nav.mainmenu {
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.2s, transform 0.2s;
-    &:hover, &:focus {
+    &:hover {
       transform: scale(1.1, 1.1);
       box-shadow: 0 2px 25px rgba(0, 0, 0, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    &:focus {
+      box-shadow: 0 2px 25px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.5);
     }
   }
   .conversation-name {
@@ -174,7 +181,7 @@ nav.mainmenu {
   }
 }
 
-.message {
+.conversation-item {
   box-shadow: @conversation-element-shadow;
   padding: @conversation-element-padding;
   background: @message-bg-color;
@@ -256,9 +263,10 @@ nav.mainmenu {
       }
     }
   }
-  & > * {
+  .content {
     padding-right: 2em;
   }
+
   button {
     opacity: 0;
     transition: opacity 0.2s;
@@ -295,8 +303,8 @@ nav.mainmenu {
     font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s;
-    // Do not stack those. this won't work since an unknown selector group is treated as
-    // invalid by browsers.
+    // Do not stack those following selectors. this won't work since an unknown selector group is treated as
+    // invalid by browsers - and every browser will only support one of those at a time.
     :-moz-placeholder {
       font-weight: normal;
     }

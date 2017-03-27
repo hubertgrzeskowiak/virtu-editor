@@ -1,24 +1,28 @@
-<div class="message" ng-class="{'focused': $ctrl.isFocused, 'outgoing': (!$ctrl.model.isIncoming),
-'incoming' : $ctrl.model.isIncoming}">
-    <div class="message-id"
-         ng-class="($ctrl.model.id == '') ? 'empty' : 'not-empty'">
-        <i class="message-id-icon fa fa-crosshairs" aria-hidden="true">
-        </i><input type="text" class="message-id-text" placeholder="add a unique label"
-               ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"
-               ng-model="$ctrl.model.id"/>
+<div class="message conversation-item"
+     ng-class="{'focused': $ctrl.isFocused, 'outgoing': (!$ctrl.model.isIncoming), 'incoming' : $ctrl.model.isIncoming}">
+    <div class="content">
+        <div class="message-id"
+             ng-class="($ctrl.model.id == '') ? 'empty' : 'not-empty'">
+            <i class="message-id-icon fa fa-crosshairs" aria-hidden="true">
+            </i><input type="text" class="message-id-text" placeholder="add a unique label"
+                       ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true"
+                       ng-model="$ctrl.model.id"/>
+        </div>
+        <div class="message-text-area">
+        <textarea class="message-text" placeholder="type your message here"
+                  ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true" auto-height
+                  ng-model="$ctrl.model.text"></textarea>
+        </div>
     </div>
-    <div class="message-text-area">
-    <textarea class="message-text" placeholder="type your message here"
-              ng-blur="$ctrl.isFocused = false" ng-focus="$ctrl.isFocused = true" auto-height
-              ng-model="$ctrl.model.text"></textarea>
+    <div class="controls">
+        <button title="delete this message"
+                class="delete-button btn btn-md btn-danger" ng-click="$ctrl.onDelete()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button title="switch between incoming and outgoing"
+                class="switch-button btn btn-md btn-primary" ng-click="$ctrl.toggleSide()">
+            <span class="glyphicon glyphicon-resize-horizontal"></span>
+        </button>
     </div>
-    <button title="delete this message"
-            class="delete-button btn btn-md btn-danger" ng-click="$ctrl.onDelete()">
-        <span class="glyphicon glyphicon-remove"></span>
-    </button>
-    <button title="switch between incoming and outgoing"
-            class="switch-button btn btn-md btn-primary" ng-click="$ctrl.toggleSide()">
-        <span class="glyphicon glyphicon-resize-horizontal"></span>
-    </button>
 
 </div>
